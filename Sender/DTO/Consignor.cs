@@ -17,6 +17,7 @@
         public double priceNetto { get; set; }
         public double priceBrutto { get; set; }
         public double VatTax { get; set; }
+        public DateTime dateTimeCreate { get; set; }
         public List<Box> Box { get; } = new();
     }
 }

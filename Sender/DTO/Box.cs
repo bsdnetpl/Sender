@@ -1,4 +1,6 @@
-﻿namespace Sender.DTO
+﻿using System.ComponentModel;
+
+namespace Sender.DTO
 {
     public class Box
     {
@@ -10,6 +12,9 @@
         public Guid Consignor { get; set; }
         public DateTime DateTimeCreateBox { get; set; }
         public DateTime DateTimeUpdateBox { get; set;}
+        public string pickup_code { get; set; }
         public double weight { get; set; }
+        [DefaultValue("false")]
+        public  bool Received;
     }
 }

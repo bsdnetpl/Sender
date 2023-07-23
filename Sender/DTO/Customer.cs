@@ -13,6 +13,7 @@
         public string Country { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
         public string email { get; set; } = string.Empty;
+        public DateTime dateTimeCreate { get; set; }
         public List<Box> Box { get; } = new();
 
     }

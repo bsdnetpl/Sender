@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sender.DB;
 
@@ -11,9 +12,11 @@ using Sender.DB;
 namespace Sender.Migrations
 {
     [DbContext(typeof(ConnectMssql))]
-    partial class ConnectMssqlModelSnapshot : ModelSnapshot
+    [Migration("20230723172059_add_Received")]
+    partial class add_Received
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,7 +81,7 @@ namespace Sender.Migrations
 
                     b.HasIndex("PosId");
 
-                    b.ToTable("boxes", (string)null);
+                    b.ToTable("boxes");
                 });
 
             modelBuilder.Entity("Sender.DTO.Consignor", b =>
@@ -148,7 +151,7 @@ namespace Sender.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("consignors", (string)null);
+                    b.ToTable("consignors");
                 });
 
             modelBuilder.Entity("Sender.DTO.Customer", b =>
@@ -205,7 +208,7 @@ namespace Sender.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("customers", (string)null);
+                    b.ToTable("customers");
                 });
 
             modelBuilder.Entity("Sender.DTO.Pos", b =>
@@ -274,7 +277,7 @@ namespace Sender.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Pos", (string)null);
+                    b.ToTable("Pos");
                 });
 
             modelBuilder.Entity("Sender.DTO.Box", b =>

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sender.DB;
 
@@ -11,9 +12,11 @@ using Sender.DB;
 namespace Sender.Migrations
 {
     [DbContext(typeof(ConnectMssql))]
-    partial class ConnectMssqlModelSnapshot : ModelSnapshot
+    [Migration("20230723153124_two")]
+    partial class two
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,13 +63,6 @@ namespace Sender.Migrations
                     b.Property<Guid?>("PosId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("Received")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("pickup_code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<double>("weight")
                         .HasColumnType("float");
 
@@ -78,7 +74,7 @@ namespace Sender.Migrations
 
                     b.HasIndex("PosId");
 
-                    b.ToTable("boxes", (string)null);
+                    b.ToTable("boxes");
                 });
 
             modelBuilder.Entity("Sender.DTO.Consignor", b =>
@@ -113,7 +109,7 @@ namespace Sender.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
                         .IsRequired()
@@ -145,10 +141,7 @@ namespace Sender.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.ToTable("consignors", (string)null);
+                    b.ToTable("consignors");
                 });
 
             modelBuilder.Entity("Sender.DTO.Customer", b =>
@@ -179,7 +172,7 @@ namespace Sender.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
                         .IsRequired()
@@ -202,10 +195,7 @@ namespace Sender.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.ToTable("customers", (string)null);
+                    b.ToTable("customers");
                 });
 
             modelBuilder.Entity("Sender.DTO.Pos", b =>
@@ -248,7 +238,7 @@ namespace Sender.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
                         .IsRequired()
@@ -271,10 +261,7 @@ namespace Sender.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.ToTable("Pos", (string)null);
+                    b.ToTable("Pos");
                 });
 
             modelBuilder.Entity("Sender.DTO.Box", b =>
