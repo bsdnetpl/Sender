@@ -19,6 +19,9 @@ namespace Sender.DB
             modelBuilder.Entity<Consignor>().HasIndex(x => x.Name).IsUnique();
             modelBuilder.Entity<Pos>().HasIndex(x => x.Name).IsUnique();
             modelBuilder.Entity<Box>().Property(x => x.Received).IsRequired();
+            modelBuilder.Entity<Pos>().Property(x => x.Password).IsRequired();
+            modelBuilder.Entity<Customer>().Property(x => x.Password).IsRequired();
+            modelBuilder.Entity<Consignor>().Property(x => x.Password).IsRequired();
 
         }
     }

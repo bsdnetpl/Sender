@@ -1,4 +1,6 @@
-﻿namespace Sender.DTO
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Sender.DTO
 {
     public class Consignor
     {
@@ -18,6 +20,8 @@
         public double priceBrutto { get; set; }
         public double VatTax { get; set; }
         public DateTime dateTimeCreate { get; set; }
+        [MinLength(8)]
+        public string Password { get; set; } = string.Empty;
         public List<Box> Box { get; } = new();
     }
 }

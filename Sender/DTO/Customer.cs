@@ -1,4 +1,6 @@
-﻿namespace Sender.DTO
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Sender.DTO
 {
     public class Customer
     {
@@ -13,6 +15,8 @@
         public string Country { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
         public string email { get; set; } = string.Empty;
+        [MinLength(8)]
+        public string Password { get; set; } = string.Empty;
         public DateTime dateTimeCreate { get; set; }
         public List<Box> Box { get; } = new();
 

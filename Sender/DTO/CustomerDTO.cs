@@ -12,5 +12,6 @@
         public string Country { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
         public string email { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
     }
 }

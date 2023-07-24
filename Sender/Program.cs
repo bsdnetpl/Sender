@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Sender.DB;
 using Sender.DTO;
@@ -15,6 +16,9 @@ builder.Services.AddScoped<Ibox,Boxes>();
 builder.Services.AddScoped<ICustomer, Customers>();
 builder.Services.AddScoped<IConsignor, Consignors>();
 builder.Services.AddScoped<IPos, Poses>();
+builder.Services.AddScoped<IPasswordHasher<Pos>, PasswordHasher<Pos>>();
+builder.Services.AddScoped<IPasswordHasher<Consignor>, PasswordHasher<Consignor>>();
+builder.Services.AddScoped<IPasswordHasher<Customer>, PasswordHasher<Customer>>();
 builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
 builder.Services.AddDbContext<ConnectMssql>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("CS")));
 var app = builder.Build();
