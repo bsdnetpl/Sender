@@ -7,8 +7,8 @@ namespace Sender.Services
         Box AddBox(BoxDTO boxDTO, Guid PosGuid, Guid Consignor, Guid CustomerGuid);
         Box SeekBox(Guid guidBox);
         Box ReturnBox(Guid ConsignorId);
-        Box PackagePickup(Guid BoxGuid, string CodePickup);
+        string PackagePickup(Guid BoxGuid, string CodePickup);
         string GenerateCodePickup(int longString);
-
+        string DeletePackage(Guid IdPackage);
     }
 }

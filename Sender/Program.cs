@@ -14,6 +14,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<Ibox,Boxes>();
 builder.Services.AddScoped<ICustomer, Customers>();
 builder.Services.AddScoped<IConsignor, Consignors>();
+builder.Services.AddScoped<IPos, Poses>();
 builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
 builder.Services.AddDbContext<ConnectMssql>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("CS")));
 var app = builder.Build();

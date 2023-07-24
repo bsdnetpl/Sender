@@ -4,5 +4,6 @@
     { 
         public string Description { get; set; }
         public double weight { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -1,14 +1,43 @@
-﻿using Sender.DTO;
+﻿using Sender.DB;
+using Sender.DTO;
 
 namespace Sender.Services
 {
     public class Boxes : Ibox
     {
         private readonly string[] alphabetNumeric = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
-        
+        private readonly ConnectMssql _connectMssql;
+
+        public Boxes(ConnectMssql connectMssql)
+        {
+            _connectMssql = connectMssql;
+        }
+
         public Box AddBox(BoxDTO boxDTO, Guid PosGuid, Guid Consignor, Guid CustomerGuid)
         {
-            throw new NotImplementedException();
+            Box box = new Box();
+            box.Id = Guid.NewGuid();
+            box.Description = boxDTO.Description;
+            box.weight = boxDTO.weight;
+            box.pickup_code = GenerateCodePickup(6);
+            box.PosGuid = PosGuid;
+            box.CustomerGuid = CustomerGuid;
+            box.ConsignorGuid = Consignor;
+            box.DateTimeCreateBox = DateTime.Now;
+            box.Received = false;
+            box.DateTimeUpdateBox = DateTime.Now;
+            box.Name = boxDTO.Name;
+            _connectMssql.boxes.Add(box);
+            _connectMssql.SaveChanges();
+            return box;
+        }
+
+        public string DeletePackage(Guid IdPackage)
+        {
+            var result = _connectMssql.boxes.Find(IdPackage);
+            _connectMssql.Remove(result);
+            _connectMssql.SaveChanges();
+            return "Package delete";
         }
 
         public string GenerateCodePickup(int longString)
@@ -22,9 +51,20 @@ namespace Sender.Services
           return string.Join("", Password);
         }
 
-        public Box PackagePickup(Guid BoxGuid, string CodePickup)
+        public string PackagePickup(Guid BoxGuid, string CodePickup)
         {
-            throw new NotImplementedException();
+            var result = _connectMssql.boxes.Find(BoxGuid);
+            if(result is null)
+            {
+                return "No package";
+            }
+            if(result.pickup_code == CodePickup)
+            {
+                result.Received = true;
+                _connectMssql.SaveChanges();
+                return "Package Recieve";
+            }
+            return "Wrong Code";
         }
 
         public Box ReturnBox(Guid ConsignorId)

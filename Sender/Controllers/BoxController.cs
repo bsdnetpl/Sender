@@ -36,5 +36,10 @@ namespace Sender.Controllers
         {
             return Ok(_ibox.PackagePickup(BoxGuid,CodePickup));
         }
+        [HttpDelete("DeletePackage")]
+        public ActionResult<string> DeletePackage(Guid IdPackage)
+        {
+            return Ok(_ibox.DeletePackage(IdPackage));
+        }
     }
 }
