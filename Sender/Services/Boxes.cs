@@ -58,9 +58,14 @@ namespace Sender.Services
             {
                 return "No package";
             }
+            if(result.Received == true)
+            {
+                return "Package Has been delivered";
+            }
             if(result.pickup_code == CodePickup)
             {
                 result.Received = true;
+                result.DateTimeUpdateBox = DateTime.Now;
                 _connectMssql.SaveChanges();
                 return "Package Recieve";
             }
