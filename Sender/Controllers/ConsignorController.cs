@@ -21,5 +21,12 @@ namespace Sender.Controllers
         {
             return Ok(_IConsignor.GetConsignor(Name));
         }
+
+        [HttpPost("AddConsignor")]
+        public ActionResult<ConsignorDTO>AddConsingnor(ConsignorDTO consignorDTO)
+        {
+            _IConsignor.AddConsignor(consignorDTO);
+            return consignorDTO;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Sender.DTO;
 using Sender.Services;
 
 namespace Sender.Controllers
@@ -19,6 +20,12 @@ namespace Sender.Controllers
         public ActionResult<Guid> GetCustomer(string Name)
         {
             return Ok(_customer.GetCustomer(Name));
+        }
+        [HttpPost("AddCustomer")]
+        public ActionResult<CustomerDTO>AddCustomer(CustomerDTO customerDTO)
+        {
+            _customer.AddCustomer(customerDTO);
+            return Ok(customerDTO);
         }
     }
 }

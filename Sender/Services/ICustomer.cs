@@ -1,7 +1,10 @@
-﻿namespace Sender.Services
+﻿using Sender.DTO;
+
+namespace Sender.Services
 {
     public interface ICustomer
     {
         Guid GetCustomer(string Name);
+       bool AddCustomer(CustomerDTO customerDTO);
     }
 }
