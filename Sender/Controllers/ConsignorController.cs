@@ -17,7 +17,7 @@ namespace Sender.Controllers
         }
 
         [HttpGet("GetConsignor")]
-        public ActionResult<Guid> GetConsignor(string Name)
+        public ActionResult<Consignor> GetConsignor(string Name)
         {
             return Ok(_IConsignor.GetConsignor(Name));
         }

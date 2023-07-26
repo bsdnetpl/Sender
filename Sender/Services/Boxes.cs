@@ -25,6 +25,8 @@ namespace Sender.Services
             box.ConsignorGuid = Consignor;
             box.DateTimeCreateBox = DateTime.Now;
             box.Received = false;
+            box.ReturnBox = false;
+            box.DateTimeReturnBox = Convert.ToDateTime("0000-00-00 00:00:00.0000000");
             box.DateTimeUpdateBox = DateTime.Now;
             box.Name = boxDTO.Name;
             _connectMssql.boxes.Add(box);
@@ -72,14 +74,19 @@ namespace Sender.Services
             return "Wrong Code";
         }
 
-        public Box ReturnBox(Guid ConsignorId)
+        public Box ReturnBox(Guid BoxId)
         {
-            throw new NotImplementedException();
+            var result = _connectMssql.boxes.Find(BoxId);
+            result.ReturnBox = true;
+            result.pickup_code = GenerateCodePickup(6);
+            result.DateTimeReturnBox = DateTime.Now;
+            _connectMssql.SaveChanges();
+            return  result;
         }
 
         public Box SeekBox(Guid guidBox)
         {
-            throw new NotImplementedException();
+            return _connectMssql.boxes.Find(guidBox);
         }
     }
 }

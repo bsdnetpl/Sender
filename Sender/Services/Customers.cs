@@ -36,9 +36,10 @@ namespace Sender.Services
             return true;
         }
 
-        public Guid GetCustomer(string Name)
+        public List<Customer> GetCustomer(string Name)
         {
-            throw new NotImplementedException();
+            var result = _connectMssql.customers.Where(x => x.Name == Name).ToList();
+            return result;
         }
     }
 }

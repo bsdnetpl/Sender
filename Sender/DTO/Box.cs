@@ -16,5 +16,8 @@ namespace Sender.DTO
         public double weight { get; set; }
         [DefaultValue("false")]
         public  bool Received;
+        [DefaultValue("false")]
+        public bool ReturnBox;
+        public DateTime DateTimeReturnBox { get; set; }
     }
 }

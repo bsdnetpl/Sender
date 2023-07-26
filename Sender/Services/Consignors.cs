@@ -29,9 +29,10 @@ namespace Sender.Services
             return true;
         }
 
-        public Guid GetConsignor(string Name)
+        public List<Consignor> GetConsignor(string Name)
         {
-            throw new NotImplementedException();
+           var result =  _connectMssql.consignors.Where(x => x.Name == Name).ToList();
+            return result;
         }
     }
 }

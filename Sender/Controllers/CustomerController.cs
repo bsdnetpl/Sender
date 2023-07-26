@@ -17,7 +17,7 @@ namespace Sender.Controllers
         }
 
         [HttpGet("GetCustomer")]
-        public ActionResult<Guid> GetCustomer(string Name)
+        public ActionResult<Customer> GetCustomer(string Name)
         {
             return Ok(_customer.GetCustomer(Name));
         }

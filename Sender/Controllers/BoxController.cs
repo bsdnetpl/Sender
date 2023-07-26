@@ -27,9 +27,9 @@ namespace Sender.Controllers
             return Ok(_ibox.SeekBox(guidBox));
         }
         [HttpPut("ReturnBox")]
-        public ActionResult<List<Box>> ReturnBox(Guid ConsignorId)
+        public ActionResult<List<Box>> ReturnBox(Guid GuidBox)
         {
-            return Ok(_ibox.ReturnBox(ConsignorId));
+            return Ok(_ibox.ReturnBox(GuidBox));
         }
         [HttpPut("PackagePickup")]
         public ActionResult<List<Box>> PackagePickup(Guid BoxGuid, string CodePickup)

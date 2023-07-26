@@ -30,7 +30,7 @@ namespace Sender.Controllers
         [HttpGet("SeekPos")]
         public ActionResult<Pos> SeekPos(string Name) 
         {
-         return _pos.SeekPos(Name);
+         return Ok(_pos.SeekPos(Name));
         }
     }
 }

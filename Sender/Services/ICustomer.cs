@@ -4,7 +4,7 @@ namespace Sender.Services
 {
     public interface ICustomer
     {
-        Guid GetCustomer(string Name);
+        List<Customer> GetCustomer(string Name);
        bool AddCustomer(CustomerDTO customerDTO);
     }
 }

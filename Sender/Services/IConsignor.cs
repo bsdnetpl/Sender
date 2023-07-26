@@ -4,7 +4,7 @@ namespace Sender.Services
 {
     public interface IConsignor
     {
-        Guid GetConsignor(string Name);
+        List<Consignor> GetConsignor(string Name);
         bool AddConsignor(ConsignorDTO consignorDTO);
     }
 }

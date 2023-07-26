@@ -49,9 +49,10 @@ namespace Sender.Services
             return $"Package was removed : {guidPos}";
         }
 
-        public Pos SeekPos(string Name)
+        public List<Pos> SeekPos(string Name)
         {
-            throw new NotImplementedException();
+            var result = _connectMssql.Pos.Where(x => x.Name == Name).ToList();
+            return result;
         }
     }
 }
