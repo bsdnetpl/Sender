@@ -22,10 +22,9 @@ namespace Sender.Controllers
             return Ok(_customer.GetCustomer(Name));
         }
         [HttpPost("AddCustomer")]
-        public ActionResult<CustomerDTO>AddCustomer(CustomerDTO customerDTO)
-        {
-            _customer.AddCustomer(customerDTO);
-            return Ok(customerDTO);
+        public bool AddCustomer(CustomerDTO customerDTO)
+        { 
+            return _customer.AddCustomer(customerDTO);
         }
     }
 }
