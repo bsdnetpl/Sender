@@ -2,6 +2,8 @@ using Moq;
 using Sender.Controllers;
 using Sender.DTO;
 using Sender.Services;
+using Xunit;
+using TheoryAttribute = Xunit.TheoryAttribute;
 
 namespace Test
 {
@@ -16,7 +18,7 @@ namespace Test
             var CustomerClass = new CustomerController(mocAddCustomer.Object);
             var result = CustomerClass.AddCustomer(It.IsAny<CustomerDTO>());
 
-            Assert.That(result,Is.True);
+            Assert.That(result, Is.True);
         }
         [Test]
         public void AddCustomerShouldReturnFalse()
@@ -28,5 +30,20 @@ namespace Test
 
             Assert.That(result, Is.False);
         }
+        [Theory]
+        [InlineData(6)]
+        [InlineData(8)]
+        [InlineData(11)]
+        public void GenerateCodePickupLenght(int length)
+        {
+            Boxes boxee = new Boxes();
+           var result = boxee.GenerateCodePickup(length);
+            
+            Assert.Equals(length, result.Length);
+
+        }
     }
+
+
+
 }
