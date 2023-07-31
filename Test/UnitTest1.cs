@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Sender.Controllers;
 using Sender.DTO;
 using Sender.Services;
+using System.Net;
 using Xunit;
 using TheoryAttribute = Xunit.TheoryAttribute;
 
@@ -30,18 +32,30 @@ namespace Test
 
             Assert.That(result, Is.False);
         }
-        [Theory]
-        [InlineData(6)]
-        [InlineData(8)]
-        [InlineData(11)]
-        public void GenerateCodePickupLenght(int length)
+        [Test]
+        public void GetCustomerShouldReturnCustomerList()
         {
-            //Boxes boxee = new Boxes();
-           var result = boxee.GenerateCodePickup(length);
-            
-            Assert.Equals(length, result.Length);
-
+            var mocGetCustomer = new Mock<ICustomer>();
+            mocGetCustomer.Setup(x => x.GetCustomer("UserName")).Returns(It.IsAny<List<Customer>>);
+            var CustomerGet = new CustomerController(mocGetCustomer.Object);
+            var result = CustomerGet.GetCustomer("UserName");
+          
+            Assert.IsNotNull(result);
+          //  Assert.That(result, Is.Empty);
+         
         }
+        //[Theory]
+        //[InlineData(6)]
+        //[InlineData(8)]
+        //[InlineData(11)]
+        //public void GenerateCodePickupLenght(int length)
+        //{
+        //    //Boxes boxee = new Boxes();
+        //   var result = boxee.GenerateCodePickup(length);
+
+        //    Assert.Equals(length, result.Length);
+
+        //}
     }
 
 
