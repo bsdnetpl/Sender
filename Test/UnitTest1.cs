@@ -36,7 +36,7 @@ namespace Test
         [InlineData(11)]
         public void GenerateCodePickupLenght(int length)
         {
-            Boxes boxee = new Boxes();
+            //Boxes boxee = new Boxes();
            var result = boxee.GenerateCodePickup(length);
             
             Assert.Equals(length, result.Length);
